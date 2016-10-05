@@ -1,0 +1,39 @@
+{
+  "name": "module3",
+  "version": "0.0.1",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "devDependencies": {
+    "bower": "1.3.8",
+    "grunt": "0.4.5",
+    "grunt-bower-concat": "0.4.0",
+    "grunt-contrib-concat": "0.5.0",
+    "grunt-contrib-clean":"0.6.0",
+    "matchdep": "1.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "errorhandler": "^1.4.3",
+    "express": "4.13.4",
+    "express-livereload": "0.0.24",
+    "express-session": "^1.13.0",
+    "pug": "2.0.0-beta4",
+    "lodash": "4.5.1",
+    "method-override": "^2.3.5",
+    "moment": "2.11.2",
+    "morgan": "^1.7.0",
+    "nedb": "1.8.0",
+    "request": "2.69.0",
+    "socket.io": "1.4.5",
+    "stylus": "0.53.0",
+    "ngrok": "^2.2.2",
+    "kattegat":"latest"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}

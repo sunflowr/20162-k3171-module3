@@ -1,0 +1,43 @@
+{
+  "name": "kattegat-client",
+  "version": "0.1.8",
+  "author": "Clint Heyer",
+  "main": [
+    "kattegat-client.js"
+  ],
+  "mainFiles": {
+    "jsfeat": [
+      "build/jsfeat-min.js"
+    ]
+  },
+  "dependencies": {
+    "jquery": "2.2.2",
+    "pepjs": "0.3.0",
+    "lodash": "4.6.1",
+    "geolib": "2.0.18",
+    "pure": "*",
+    "jquery.transit": "0.9.12",
+    "hammerjs": "2.0.6",
+    "tinycolor": "1.3.0",
+    "momentjs": "2.11.2",
+    "jquery-hammerjs": "2.0.0",
+    "flot": "0.8.3",
+    "leaflet-dist": "0.7.2",
+    "smoothie": "1.27.0",
+    "jsfeat": "0.0.8",
+    "hammer-touchemulator": "0.0.2"
+  },
+  "resolutions": {
+    "jquery": "2.2.2"
+  },
+  "homepage": "https://github.com/ClintH/kattegat-client",
+  "_release": "0.1.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.8",
+    "commit": "88f828415efee3ecd850741e10d7c0c614cb756c"
+  },
+  "_source": "https://github.com/ClintH/kattegat-client.git",
+  "_target": "*",
+  "_originalSource": "kattegat-client"
+}

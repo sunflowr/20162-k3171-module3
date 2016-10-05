@@ -1,0 +1,28 @@
+{
+  "name": "pepjs",
+  "main": "dist/pep.js",
+  "homepage": "https://github.com/jquery/PEP",
+  "authors": [
+    "jQuery Foundation and other contributors"
+  ],
+  "description": "Polyfill of the PointerEvents W3C spec",
+  "keywords": [
+    "PointerEvents"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test"
+  ],
+  "version": "0.3.0",
+  "_release": "0.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.0",
+    "commit": "87a86c97daa79efece54eb2eee05c1ee5c73d0fd"
+  },
+  "_source": "https://github.com/jquery/PEP.git",
+  "_target": "0.3.0",
+  "_originalSource": "pepjs"
+}

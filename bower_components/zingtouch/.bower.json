@@ -1,0 +1,29 @@
+{
+  "name": "zingtouch",
+  "description": "A modern JavaScript touch gesture library",
+  "main": "dist/zingtouch.min.js",
+  "authors": [
+    "ZingChart"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "https://github.com/zingchart/zingtouch",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "1.0.2",
+  "_release": "1.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.2",
+    "commit": "cd4ac24b54c494c097a20efa7e32a9c39a234936"
+  },
+  "_source": "https://github.com/zingchart/zingtouch.git",
+  "_target": "^1.0.2",
+  "_originalSource": "zingtouch",
+  "_direct": true
+}

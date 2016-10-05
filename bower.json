@@ -1,0 +1,10 @@
+{
+  "name":"module3",
+  "version": "0.0.0",
+  "dependencies": {
+    "kattegat-client": "latest"
+  },
+  "resolutions": {
+    "jquery": "2.2.2"
+  }
+}
