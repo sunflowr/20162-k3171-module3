@@ -1,30 +1,48 @@
 <!DOCTYPE html>
-<html><head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, target-densitydpi=device-dpi">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<title>module3</title>
-  <link rel='stylesheet' href='/bower_components/pure/pure-min.css'>
-  <link rel='stylesheet' href='/base.css'>
-  <link rel='stylesheet' href='style.css'>
-</head>
-<body kattegat-livereload="true"  touch-action="none">
-  <!-- Pointer events are listened to within the section -->
-  <section style="touch-action:none"><div id="lastEvent"></div></section>
-
-  <div id="parent" >
-    <div class="name">Parent</div>
-    <div id="child">
-      <div class="name">Child</div>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, target-densitydpi=device-dpi">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>module3</title>
+    <link rel='stylesheet' href='/bower_components/pure/pure-min.css'>
+    <link rel='stylesheet' href='/base.css'>
+    <link rel='stylesheet' href='style.css'>
+  </head>
+  <body kattegat-livereload="true">
+    <div id="toucharea" class="toucharea">
+      <div id="normal-touch"></div>
+      <div id="touch-scroll1" class="touch-scroll1"></div>
+      <div id="touch-scroll2" class="touch-scroll2"></div>
     </div>
-  </div>
 
-  <div id="output">
-    Input currently panned: 0 times
-  </div>
+    <div class="wrapper">
+      <!--<section class="menu-list">
+        <ul>
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+        <li>menu5</li>
+        </ul>
+        </section>-->
+      <section id="post-list" class="post-list">
+        <!-- Posts auto-generated in script -->
+      </section>
+      <!--<section class="extra-list">
+        <ul>
+        <li>list-item1</li>
+        <li>list-item2</li>
+        <li>list-item3</li>
+        <li>list-item4</li>
+        <li>list-item5</li>
+        </ul>-->
+      </section>
+    </div>
 
-  <!-- Load in standard libraries -->
-  <script src="/bower_components/bower_libs.js"></script>
-  <!-- Load in script for this sketch -->
-  <script src="script.js"></script>
-</body></html>
+    <!-- Load in standard libraries -->
+    <script src="/bower_components/bower_libs.js"></script>
+    <!-- Load in script for this sketch -->
+    <script src="script.js"></script>
+  </body>
+</html>
