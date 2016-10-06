@@ -1,5 +1,7 @@
 var postLength = 50;
 var currentPost;
+var searchingForPost = false;
+var infoMessage = "";
 
 $(document).ready(function() {
 	// Prevent browser's default touch gestures
@@ -16,13 +18,24 @@ $(document).ready(function() {
   htScroll1.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
   htScroll1.on("swipeup", function(e) {
     // Swipe up.
-    setActivePost(getNextPost("user1"));
-    console.log("swipeup");
+    setActivePost(getNextPost("user1"), true);
   });
   htScroll1.on("swipedown", function(e) {
     // Swipe down.
-    setActivePost(getPrevPost("user1"));
-    console.log("swipedown");
+    setActivePost(getPrevPost("user1"), true);
+  });
+
+  var htScroll1 = new Hammer($("#touch-scroll2")[0], {
+    preventDefault: true
+  });
+  htScroll1.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
+  htScroll1.on("swipeup", function(e) {
+    // Swipe up.
+    setActivePost(getNextPost("page2"), true);
+  });
+  htScroll1.on("swipedown", function(e) {
+    // Swipe down.
+    setActivePost(getPrevPost("page2"), true);
   });
 
   var users = [
@@ -35,7 +48,8 @@ $(document).ready(function() {
     "ad1",
     "page2",
   ];
-  for(var i = 0; i < postLength; i++) {
+  $("#post-list").append(createPost(0, users[0], isPage));
+  for(var i = 1; i < postLength; i++) {
     var isPage = Math.random() > 0.5;
     var name;
     if(isPage) {
@@ -45,7 +59,14 @@ $(document).ready(function() {
     }
     $("#post-list").append(createPost(i, name, isPage));
   }
-  setActivePost(getNextPost(users[0]));
+  $("#post-list").append(createPost(postLength, users[0], isPage));
+
+  // Set active post.
+  findCurrentlyActivePost();
+});
+
+$(document).scroll(function() {
+  findCurrentlyActivePost();
 });
 
 function createPost(id, name, isPage) {
@@ -76,39 +97,49 @@ function getNextPost(filter) {
   }
 
   // Find next post based on filter.
-  var query = ".post[data-user^=\"" + filter + "\"]";
-  var res = $(currentPost).next(query);
+  var query = ".post[data-user=\"" + filter + "\"]:first";
+  var res = currentPost.nextAll(query);
   if(res.length) {
     // Next post found, return it.
     return res;
   }
+
+  infoMessage = "No messages found";
+  return null;
 }
 
 function getPrevPost(filter) {
   // Make sure current post is set.
   if(!currentPost) {
-    currentPost = $("#post-list").children()[0];
+    currentPost = $("#post-list").children();
   }
 
   // Find prev post based on filter.
-  var query = ".post[data-user^=\"" + filter + "\"]";
-  var res = $(currentPost).prev(query);
+  var query = ".post[data-user=\"" + filter + "\"]:first";
+  var res = currentPost.prevAll(query);
   if(res.length) {
     // Prev post found, return it.
     return res;
   }
+
+  infoMessage = "No messages found";
+  return null;
 }
 
 function scrollToPost(post) {
+  searchingForPost = true;
   //$("#post-" + id)[0].scrollIntoView();
-  $('html, body').animate({
+  $("html, body").animate({
       scrollTop: post.offset().top
-  }, 1000);
+  }, 1000, function() {
+    searchingForPost = false;
+  });
 }
 
-function setActivePost(post) {
+function setActivePost(post, scroll) {
   if((!post) || (!post.length)) {
     // Show "no more messages" info.
+    $("#info-message").text(infoMessage);
     $("#info-message").fadeIn(400).delay(800).fadeOut(400);
     return;
   }
@@ -121,7 +152,31 @@ function setActivePost(post) {
   if(currentPost != post) {
     currentPost = post;
     currentPost.addClass("post-active");
-    scrollToPost(currentPost);
+
+    // If we should scroll to new post.
+    if(scroll) {
+      scrollToPost(currentPost);
+    }
   }
-  console.log(currentPost);
 }
+
+function findCurrentlyActivePost() {
+  // Do nothing if searching for specific post.
+  if(searchingForPost) {
+    return;
+  }
+
+  var cutoff = $(window).scrollTop();
+
+  // Find current top visible post.
+  $("#post-list").children().each(function() {
+    if(($(this).offset().top + $(this).height()) > cutoff) {
+      // Visible post found, make it current.
+      setActivePost($(this), false);
+
+      // Stops the iteration after the first one on screen.
+      return false; 
+    }
+  });
+}
+
