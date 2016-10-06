@@ -1,5 +1,5 @@
-var activePostId = 0;
-var postLength = 10;
+var postLength = 50;
+var currentPost;
 
 $(document).ready(function() {
 	// Prevent browser's default touch gestures
@@ -16,13 +16,13 @@ $(document).ready(function() {
   htScroll1.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
   htScroll1.on("swipeup", function(e) {
     // Swipe up.
-    setActivePost(activePostId + 1);
-    console.log("swipeup " + activePostId);
+    setActivePost(getNextPost("user1"));
+    console.log("swipeup");
   });
   htScroll1.on("swipedown", function(e) {
     // Swipe down.
-    setActivePost(activePostId - 1);
-    console.log("swipedown " + activePostId);
+    setActivePost(getPrevPost("user1"));
+    console.log("swipedown");
   });
   
 
@@ -81,7 +81,7 @@ $(document).ready(function() {
     }
     $("#post-list").append(createPost(i, name, isPage));
   }
-  setActivePost(5);
+  setActivePost(getNextPost(users[0]));
 });
 
 function createPost(id, name, isPage) {
@@ -105,31 +105,59 @@ function createPost(id, name, isPage) {
   return post;
 }
 
-function scrollToPost(id) {
-  var nid = "#post-" + id;
+function getNextPost(filter) {
+  // Make sure current post is set.
+  if(!currentPost) {
+    currentPost = $("#post-list").children();
+  }
+
+  // Find next post based on filter.
+  var query = ".post[data-user^=\"" + filter + "\"]";
+  var res = $(currentPost).next(query);
+  if(res.length) {
+    // Next post found, return it.
+    return res;
+  }
+}
+
+function getPrevPost(filter) {
+  // Make sure current post is set.
+  if(!currentPost) {
+    currentPost = $("#post-list").children()[0];
+  }
+
+  // Find prev post based on filter.
+  var query = ".post[data-user^=\"" + filter + "\"]";
+  var res = $(currentPost).prev(query);
+  if(res.length) {
+    // Prev post found, return it.
+    return res;
+  }
+}
+
+function scrollToPost(post) {
   //$("#post-" + id)[0].scrollIntoView();
   $('html, body').animate({
-      scrollTop: $(nid).offset().top
+      scrollTop: post.offset().top
   }, 1000);
 }
 
-function setActivePost(id) {
-  if(activePostId) {
-    $("#post-" + activePostId).removeClass("post-active");
+function setActivePost(post) {
+  if((!post) || (!post.length)) {
+    // Show "no more messages" info.
+    $("#info-message").fadeIn(400).delay(800).fadeOut(400);
+    return;
   }
 
-  // Clamp id in range 0 ... postLength.
-  if(id < 0) {
-    id = 0;
-  } else if(id >= postLength) {
-    id = postLength - 1;
+  if(currentPost) {
+    currentPost.removeClass("post-active");
   }
 
   // Only update active id if it changed.
-  if(activePostId != id) {
-    activePostId = id;
-    $("#post-" + activePostId).addClass("post-active");
-    scrollToPost(activePostId);
+  if(currentPost != post) {
+    currentPost = post;
+    currentPost.addClass("post-active");
+    scrollToPost(currentPost);
   }
-  console.log(activePostId);
+  console.log(currentPost);
 }
