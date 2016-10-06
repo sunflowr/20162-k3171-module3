@@ -24,42 +24,6 @@ $(document).ready(function() {
     setActivePost(getPrevPost("user1"));
     console.log("swipedown");
   });
-  
-
-  /*var region = new ZingTouch.Region(document.getElementById("toucharea"));
-
-  var target = document.getElementById("touch-scroll1");
-  region.bind(target, "pan", function(e){ e.preventDefault(); });
-  region.bind(target, "swipe", function(e){
-    console.log("swwwwwipe");
-    var dir = Math.floor(e.detail.data[0].currentDirection);
-    if((dir >= 0) && (dir < 180)){
-      // Swipe down.
-      activePostId += 1;
-    }
-    else {
-      // Swipe up.
-      activePostId -= 1;
-    }
-    setActivePost(activePostId);
-    console.log("swipe " + activePostId + " " + dir);
-  });
-
-  target = document.getElementById("touch-scroll2");
-  region.bind(target, "pan", function(e){ e.preventDefault(); });
-  region.bind(target, "swipe", function(e){
-    var dir = Math.floor(e.detail.data[0].currentDirection);
-    if((dir > 90) && (dir < 270)){
-      // Swipe down.
-      activePostId += 1;
-    }
-    else {
-      // Swipe up.
-      activePostId -= 1;
-    }
-    setActivePost(activePostId);
-    console.log("swipe " + activePostId + " " + dir);
-  });*/
 
   var users = [
     "user1",
