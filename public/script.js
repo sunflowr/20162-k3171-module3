@@ -1,4 +1,4 @@
-var postLength = 50;
+var postLength = 60;
 var currentPost;
 var searchingForPost = false;
 var infoMessage = "";
